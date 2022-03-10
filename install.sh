@@ -11,7 +11,7 @@ DSS_DIR=${DSS_ZIP%.zip}
 HERE=$(realpath $(dirname $0))
 cd $HERE
 
-if [ ! -d donwloads ]; then
+if [ ! -d downloads ]; then
   mkdir downloads
 fi
 
@@ -27,6 +27,10 @@ fi
 
 if [ ! -d $TOMCAT8_DIR ]; then
   tar xvf downloads/$TOMCAT8_TGZ
+  if [ -L apache-tomcat-8 ]; then
+    rm apache-tomcat-8
+  fi
+  ln -s $TOMCAT8_DIR apache-tomcat-8
 fi
 
 if [ ! -d $DSS_ZIP ]; then
